@@ -1,0 +1,5 @@
+1,Vintage Hermès Silk Scarf,Luxury silk scarf in excellent condition,245.00,images/scarf.jpg
+1,Classic Burberry Trench Coat,Timeless Burberry trench coat,890.00,images/trench.jpg
+1,Gucci Leather Loafers,Elegant Gucci leather loafers,425.00,images/shoes.jpg
+1,Chanel Classic Handbag,Luxury Chanel handbag,3200.00,images/bag.jpg
+1,Prada Sunglasses,Stylish Prada sunglasses,185.00,images/glasses.jpg
