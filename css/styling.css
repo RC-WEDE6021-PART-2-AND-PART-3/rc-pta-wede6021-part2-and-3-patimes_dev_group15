@@ -57,7 +57,17 @@ body{
     color:#2f6b57;
     font-size:20px;
 }
-
+.bag-icon i {
+    font-size:20px;
+    color:#2f6b57;
+}
+.bag-icon .cart-count {
+    background: #2f6b57;
+    color:white;
+}
+.bag-icon.active i {
+    color:#2f6b57;
+}
 .cart-count{
     position:absolute;
     top:-10px;

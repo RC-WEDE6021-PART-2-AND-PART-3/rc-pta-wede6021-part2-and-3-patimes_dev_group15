@@ -70,6 +70,7 @@ $shipping = 15;
 
     <!-- Links this page to the main stylesheet. -->
     <link rel="stylesheet" href="css/styling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -85,10 +86,13 @@ $shipping = 15;
 
         <!-- Cart and login icons -->
         <div class="nav-icons">
-            <a href="cart.php" class="bag-icon">🛍
+        <a href="cart.php" class="bag-icon"> <?php if ($cartCount > 0) echo 'active'; ?>
+                <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-count"><?php echo $cartCount; ?></span>
             </a>
-            <a href="login.php" class="user-icon">♡</a>
+            <a href="login.php" class="user-icon">
+            <i class="fa-solid fa-user"></i>
+        </a> s
         </div>
     </div>
 </nav>
@@ -103,7 +107,9 @@ $shipping = 15;
     <?php if ($cartCount == 0) { ?>
 
         <div class="empty-cart">
-            <div class="empty-icon">🛍</div>
+            <div class="empty-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
             <h2>Your cart is empty</h2>
             <p>Start adding items to your cart</p>
             <a href="shop.php" class="green-btn">Continue Shopping</a>

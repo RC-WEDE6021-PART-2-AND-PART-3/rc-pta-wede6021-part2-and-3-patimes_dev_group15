@@ -80,6 +80,7 @@ if (isset($_SESSION["user_id"])) {
     <meta charset="UTF-8">
     <title><?php echo htmlspecialchars($product['title']); ?> | Pastimes</title>
     <link rel="stylesheet" href="css/styling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -93,10 +94,13 @@ if (isset($_SESSION["user_id"])) {
         <a href="contact.php">Contact</a>
 
         <div class="nav-icons">
-            <a href="cart.php" class="bag-icon">🛍
+            <a href="cart.php" class="bag-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-count"><?php echo $cartCount; ?></span>
             </a>
-            <a href="login.php" class="user-icon">♡</a>
+            <a href="login.php" class="user-icon">
+                <i class="fa-solid fa-user"></i>
+        </a>
         </div>
     </div>
 </nav>

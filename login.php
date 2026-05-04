@@ -128,8 +128,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="bottom-text">
                 Don’t have an account?
                 <a href="register.php">Create one</a>
-            </div>
-
+        <br>
+            Need test details?
+             <a href="demo-users.php">View demo login details</a>
+             </div>
         </div>
     </div>
 

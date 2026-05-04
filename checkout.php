@@ -30,6 +30,7 @@ $shipping = 15;
     <meta charset="UTF-8">
     <title>Checkout | Pastimes</title>
     <link rel="stylesheet" href="css/styling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 

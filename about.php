@@ -12,6 +12,7 @@ $cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
     <meta charset="UTF-8">
     <title>About | Pastimes</title>
     <link rel="stylesheet" href="css/styling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -25,7 +26,8 @@ $cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
         <a href="contact.php">Contact</a>
 
         <div class="nav-icons">
-            <a href="cart.php" class="bag-icon">🛍
+        <a href="cart.php" class="bag-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-count"><?php echo $cartCount; ?></span>
             </a>
             <a href="login.php" class="user-icon">♡</a>

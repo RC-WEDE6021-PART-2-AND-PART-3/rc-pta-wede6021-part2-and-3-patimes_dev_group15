@@ -131,7 +131,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="bottom-text">
                 Already have an account?
                 <a href="login.php">Sign in</a>
-            </div>
+            <br>
+            Need test details?
+             <a href="demo-users.php">View demo login details</a>
+             </div>
         </div>
     </div>
 
