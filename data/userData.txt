@@ -1,0 +1,6 @@
+Admin User,admin@gmail.com,admin,21232f297a57a5a743894a0e4a801fc3,admin,approved
+Katlego Molokwane,katli@gmail.com,katlego,305aa098d62876af49e74f794eaf28cd,seller,approved
+Refentse Monamodi,resse@gmail.com,fentse,07596caa8da062f682584de105e7381e,customer,pending
+Aobakwe Leshomo,aobakwe@gmail.com,baki,0860b1c05f14251d29519b0490877951,seller,pending
+Rearabilwe Selomane,mpho@gmail.com,rea,1e494eeef478ce7255dcc83412e24950,customer,pending
+Kgomotso Motshwanedi,kgomotso@gmail.com,kgomotso,417e25f379762c4a702315cc0458e660,customer,approved
