@@ -4,6 +4,7 @@
 Pastimes is a fully functional e-commerce web application designed for buying and selling secondhand luxury clothing. Built using PHP, MySQL, HTML, and CSS, it supports three user roles: Admin, Seller, and Customer.
 
 ##GITHUB LINK:
+https://github.com/RC-WEDE6021-PART-2-AND-PART-3/rc-pta-wede6021-part2-and-3-patimes_dev_group15.git
 
 ## Features
 - User Registration with Password Hashing (MD5) and Role Selection (Customer/Seller).
