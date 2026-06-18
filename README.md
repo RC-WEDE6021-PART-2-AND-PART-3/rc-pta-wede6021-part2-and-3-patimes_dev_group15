@@ -47,9 +47,11 @@ Use these accounts to test the website:
 - FontAwesome (Icons)
 
 
-## Demo video
-The demo video is included in this repository.
+## Demo Video
+A video demonstration of the working web application is included in this repository.
 
-NOTE: Due to GitHub size limitation, please download the video file to view it.
-
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/OFWe9D1G)
+**⚠️ IMPORTANT:** Due to GitHub's 25MB file size limitation for web viewing, the video file is stored using Git LFS. 
+**To view the video:**
+1. Click on the file `PastimesGroup15_FinalPOE.MOV` in the repository list.
+2. Click the **Download** button (or the three dots `...` > Download) on the right side of the screen.
+3. Open the downloaded `.MOV` file on your computer to watch the full demonstration.
