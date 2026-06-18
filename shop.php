@@ -1,12 +1,8 @@
-<?php
-session_start();
-include "DBConn.php";
-
-$cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
-
-$items = $conn->query("SELECT * FROM ITEMS");
+<?php 
+session_start(); 
+include "DBConn.php"; 
+$items = $conn->query("SELECT * FROM ITEMS WHERE approved = 1");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,21 +15,43 @@ $items = $conn->query("SELECT * FROM ITEMS");
 
 <nav class="navbar">
     <div class="logo">Pastimes</div>
-
     <div class="nav-links">
         <a href="index.php">Home</a>
         <a href="shop.php">Shop</a>
         <a href="about.php">About</a>
         <a href="contact.php">Contact</a>
 
+        <?php if(isset($_SESSION["role"]) && $_SESSION["role"] == "seller") { ?>
+            <a href="seller-dashboard.php">Sell</a>
+        <?php } ?>
+
         <div class="nav-icons">
-        <a href="cart.php" class="bag-icon">
+            <!-- CART ICON -->
+            <a href="cart.php" class="bag-icon">
                 <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-count"><?php echo $cartCount; ?></span>
+                <span class="cart-count">0</span>
             </a>
-            <a href="login.php" class="user-icon">
-            <i class="fa-solid fa-user"></i>
-        </a>
+
+            <!-- BELL ICON (Only shows for Customers & Sellers, NOT Admin) -->
+            <?php 
+            if(isset($_SESSION["user_id"]) && isset($_SESSION["role"]) && $_SESSION["role"] != "admin") { 
+                $msgLink = ($_SESSION["role"] == "seller") ? "seller-dashboard.php" : "my-messages.php";
+            ?>
+                <a href="<?php echo $msgLink; ?>" class="user-icon" style="position:relative; text-decoration:none; color:#2f6b57; font-size:20px;">
+                    <i class="fa-solid fa-bell"></i>
+                </a>
+            <?php } ?>
+
+            <!-- LOGIN / LOGOUT ICON -->
+            <?php if(isset($_SESSION["user_id"])) { ?>
+                <a href="logout.php" class="user-icon">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            <?php } else { ?>
+                <a href="login.php" class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            <?php } ?>
         </div>
     </div>
 </nav>
@@ -43,56 +61,25 @@ $items = $conn->query("SELECT * FROM ITEMS");
     <p>Curated pieces from verified sellers</p>
 </section>
 
-<section class="shop-area">
-
-    <aside class="filters">
-        <div class="filter-top">
-            <h3>Filters</h3>
-            <a href="shop.php">Reset</a>
-        </div>
-
-        <h4>Search</h4>
-        <input class="search" type="text" placeholder="Search items...">
-
-        <h4>Category</h4>
-        <label><input type="radio" checked> All Items</label>
-        <label><input type="radio"> Women</label>
-        <label><input type="radio"> Men</label>
-        <label><input type="radio"> Accessories</label>
-
-        <h4>Condition</h4>
-        <label><input type="radio" checked> All Conditions</label>
-        <label><input type="radio"> Like New</label>
-        <label><input type="radio"> Excellent</label>
-        <label><input type="radio"> Very Good</label>
-
-        <h4>Price Range: R0 - R5000</h4>
-        <input type="range">
-    </aside>
-
-    <div class="products">
-
-        <?php while($item = $items->fetch_assoc()){ ?>
-
+<section class="shop-area" style="display: block; padding: 35px 24% 70px;">
+    <div class="products" style="grid-template-columns: repeat(3, 1fr); gap: 25px;">
+        <?php if($items->num_rows > 0) { while($item = $items->fetch_assoc()){ ?>
             <a class="product-card" href="product-details.php?id=<?php echo $item['item_id']; ?>">
-                <img src="<?php echo $item['image']; ?>">
-
+                <img src="<?php echo htmlspecialchars($item['image']); ?>">
                 <div class="product-info">
-                    <p class="brand">Pastimes</p>
+                    <p class="brand"><?php echo htmlspecialchars($item['brand']); ?></p>
                     <h3><?php echo htmlspecialchars($item['title']); ?></h3>
                     <p class="seller">by Verified Seller</p>
-
                     <div class="price-row">
-                        <span>R<?php echo $item['price']; ?></span>
+                        <span>R<?php echo number_format($item['price'], 2); ?></span>
                         <span class="tag">Excellent</span>
                     </div>
                 </div>
             </a>
-
+        <?php } } else { ?>
+            <p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #777;">No products found.</p>
         <?php } ?>
-
     </div>
-
 </section>
 
 <footer>
@@ -102,8 +89,7 @@ $items = $conn->query("SELECT * FROM ITEMS");
         <div><h4>Support</h4><a href="#">FAQ</a><a href="#">Shipping</a><a href="#">Returns</a><a href="contact.php">Contact</a></div>
         <div><h4>Sell With Us</h4><p>Interested in selling your luxury items?</p><a href="register.php" class="footer-btn">Get Started</a></div>
     </div>
-
-    <p class="copyright">©️ 2026 Pastimes. All rights reserved.</p>
+    <p class="copyright">© 2026 Pastimes. All rights reserved.</p>
 </footer>
 
 </body>

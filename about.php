@@ -1,11 +1,4 @@
-
-
-
-<?php
-session_start();
-$cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
-?>
-
+<?php session_start(); include "DBConn.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,46 +11,54 @@ $cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 
 <nav class="navbar">
     <div class="logo">Pastimes</div>
-
     <div class="nav-links">
         <a href="index.php">Home</a>
         <a href="shop.php">Shop</a>
         <a href="about.php">About</a>
         <a href="contact.php">Contact</a>
 
+        <?php if(isset($_SESSION["role"]) && $_SESSION["role"] == "seller") { ?>
+            <a href="seller-dashboard.php">Sell</a>
+        <?php } ?>
+
         <div class="nav-icons">
-        <a href="cart.php" class="bag-icon">
+            <!-- CART ICON -->
+            <a href="cart.php" class="bag-icon">
                 <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-count"><?php echo $cartCount; ?></span>
+                <span class="cart-count">0</span>
             </a>
-            <a href="login.php" class="user-icon">♡</a>
+
+            <!-- BELL ICON (Only shows for Customers & Sellers, NOT Admin) -->
+            <?php 
+            if(isset($_SESSION["user_id"]) && isset($_SESSION["role"]) && $_SESSION["role"] != "admin") { 
+                $msgLink = ($_SESSION["role"] == "seller") ? "seller-dashboard.php" : "my-messages.php";
+            ?>
+                <a href="<?php echo $msgLink; ?>" class="user-icon" style="position:relative; text-decoration:none; color:#2f6b57; font-size:20px;">
+                    <i class="fa-solid fa-bell"></i>
+                </a>
+            <?php } ?>
+
+            <!-- LOGIN / LOGOUT ICON -->
+            <?php if(isset($_SESSION["user_id"])) { ?>
+                <a href="logout.php" class="user-icon">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            <?php } else { ?>
+                <a href="login.php" class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            <?php } ?>
         </div>
     </div>
 </nav>
 
 <section class="content-section">
     <h1>Our Story</h1>
-
-    <p>
-        Pastimes was founded with a single mission: to redefine luxury secondhand shopping.
-        We believe that exceptional design and craftsmanship should be celebrated and passed on.
-    </p>
-
-    <p>
-        Every piece in our collection is handpicked and verified by our team of experts.
-        We focus on high-quality items from the world's most prestigious fashion houses.
-    </p>
-
+    <p>Pastimes was founded with a single mission: to redefine luxury secondhand shopping. We believe that exceptional design and craftsmanship should be celebrated and passed on.</p>
+    <p>Every piece in our collection is handpicked and verified by our team of experts. We focus on high-quality items from the world's most prestigious fashion houses.</p>
     <div class="about-columns">
-        <div>
-            <h3>Curated Quality</h3>
-            <p>We curate timeless pieces that reflect excellence and sustainability in fashion.</p>
-        </div>
-
-        <div>
-            <h3>Verified Authenticity</h3>
-            <p>Every seller is vetted and every item is inspected before it reaches you.</p>
-        </div>
+        <div><h3>Curated Quality</h3><p>We curate timeless pieces that reflect excellence and sustainability in fashion.</p></div>
+        <div><h3>Verified Authenticity</h3><p>Every seller is vetted and every item is inspected before it reaches you.</p></div>
     </div>
 </section>
 
@@ -68,7 +69,6 @@ $cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
         <div><h4>Support</h4><a href="#">FAQ</a><a href="#">Shipping</a><a href="#">Returns</a><a href="contact.php">Contact</a></div>
         <div><h4>Sell With Us</h4><p>Interested in selling your luxury items?</p><a href="register.php" class="footer-btn">Get Started</a></div>
     </div>
-
     <p class="copyright">© 2026 Pastimes. All rights reserved.</p>
 </footer>
 

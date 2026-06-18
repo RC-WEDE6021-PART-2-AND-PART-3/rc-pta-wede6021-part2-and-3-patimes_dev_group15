@@ -1,7 +1,9 @@
-<?php 
-session_start(); 
-include "DBConn.php"; 
+
+<?php
+session_start();
+$cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,43 +16,21 @@ include "DBConn.php";
 
 <nav class="navbar">
     <div class="logo">Pastimes</div>
+
     <div class="nav-links">
         <a href="index.php">Home</a>
         <a href="shop.php">Shop</a>
         <a href="about.php">About</a>
         <a href="contact.php">Contact</a>
 
-        <?php if(isset($_SESSION["role"]) && $_SESSION["role"] == "seller") { ?>
-            <a href="seller-dashboard.php">Sell</a>
-        <?php } ?>
-
         <div class="nav-icons">
-            <!-- CART ICON -->
-            <a href="cart.php" class="bag-icon">
+        <a href="cart.php" class="bag-icon">
                 <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-count">0</span>
+                <span class="cart-count"><?php echo $cartCount; ?></span>
             </a>
-
-            <!-- BELL ICON (Only shows for Customers & Sellers, NOT Admin) -->
-            <?php 
-            if(isset($_SESSION["user_id"]) && isset($_SESSION["role"]) && $_SESSION["role"] != "admin") { 
-                $msgLink = ($_SESSION["role"] == "seller") ? "seller-dashboard.php" : "my-messages.php";
-            ?>
-                <a href="<?php echo $msgLink; ?>" class="user-icon" style="position:relative; text-decoration:none; color:#2f6b57; font-size:20px;">
-                    <i class="fa-solid fa-bell"></i>
-                </a>
-            <?php } ?>
-
-            <!-- LOGIN / LOGOUT ICON -->
-            <?php if(isset($_SESSION["user_id"])) { ?>
-                <a href="logout.php" class="user-icon">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                </a>
-            <?php } else { ?>
-                <a href="login.php" class="user-icon">
-                    <i class="fa-solid fa-user"></i>
-                </a>
-            <?php } ?>
+            <a href="login.php" class="user-icon">
+                <i class="fa-solid fa-user"></i>
+            </a>
         </div>
     </div>
 </nav>
@@ -58,7 +38,12 @@ include "DBConn.php";
 <section class="hero">
     <div class="hero-content">
         <h1>Luxury lives <br><span>beyond once</span></h1>
-        <p>Curated second-hand designer pieces in exceptional condition. Each item verified for authenticity and quality.</p>
+
+        <p>
+            Curated second-hand designer pieces in exceptional condition.
+            Each item verified for authenticity and quality.
+        </p>
+
         <div class="hero-buttons">
             <a href="shop.php" class="green-btn">Explore Collection →</a>
             <a href="register.php" class="light-btn">Become a Seller</a>
@@ -72,11 +57,13 @@ include "DBConn.php";
         <h3>Verified Sellers</h3>
         <p>Every seller is carefully vetted and approved by our team to ensure authenticity and quality.</p>
     </div>
+
     <div class="feature">
         <div class="feature-icon">○</div>
         <h3>Direct Messaging</h3>
         <p>Connect directly with sellers to ask questions and negotiate.</p>
     </div>
+
     <div class="feature">
         <div class="feature-icon">↻</div>
         <h3>Real-Time Updates</h3>
@@ -87,6 +74,7 @@ include "DBConn.php";
 <section class="featured">
     <h2>Featured Collection</h2>
     <p class="featured-subtitle">Handpicked pieces from our verified sellers</p>
+
     <div class="product-grid">
         <a href="product-details.php?id=1" class="product-card">
             <img src="images/scarf.jpg">
@@ -96,6 +84,7 @@ include "DBConn.php";
                 <div class="price-row"><span>R245</span><span class="tag">Excellent</span></div>
             </div>
         </a>
+
         <a href="product-details.php?id=2" class="product-card">
             <img src="images/trench.jpg">
             <div class="product-info">
@@ -104,6 +93,7 @@ include "DBConn.php";
                 <div class="price-row"><span>R890</span><span class="tag">Like New</span></div>
             </div>
         </a>
+
         <a href="product-details.php?id=3" class="product-card">
             <img src="images/shoes.jpg">
             <div class="product-info">
@@ -112,6 +102,7 @@ include "DBConn.php";
                 <div class="price-row"><span>R425</span><span class="tag">Excellent</span></div>
             </div>
         </a>
+
         <a href="product-details.php?id=4" class="product-card">
             <img src="images/bag.jpg">
             <div class="product-info">
@@ -121,6 +112,7 @@ include "DBConn.php";
             </div>
         </a>
     </div>
+
     <a href="shop.php" class="view-btn">View All Items →</a>
 </section>
 
@@ -136,6 +128,7 @@ include "DBConn.php";
             <h4>Pastimes</h4>
             <p>Curated secondhand luxury clothing in exceptional condition.</p>
         </div>
+
         <div>
             <h4>Shop</h4>
             <a href="shop.php">All Items</a>
@@ -143,6 +136,7 @@ include "DBConn.php";
             <a href="#">Men</a>
             <a href="#">Accessories</a>
         </div>
+
         <div>
             <h4>Support</h4>
             <a href="#">FAQ</a>
@@ -150,12 +144,14 @@ include "DBConn.php";
             <a href="#">Returns</a>
             <a href="contact.php">Contact</a>
         </div>
+
         <div>
             <h4>Sell With Us</h4>
             <p>Interested in selling your luxury items?</p>
             <a href="register.php" class="footer-btn">Get Started</a>
         </div>
     </div>
+
     <p class="copyright">© 2026 Pastimes. All rights reserved.</p>
 </footer>
 
